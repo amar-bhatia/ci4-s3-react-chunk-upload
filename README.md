@@ -5,7 +5,7 @@ Upload large files in chunks
 # CI4 setup guide
 
 * Run composer require aws/aws-sdk-php.
-* Import the sql files in your table.
+* Import the sql in your database.
 * Copy the App/Libraries/S3_bucket code or the entire library in your library folder.
 * Copy the 2 routes given in App/Config/Routes.php into your routes code
 * Copy the Controller and Model code into your respective controller and model
