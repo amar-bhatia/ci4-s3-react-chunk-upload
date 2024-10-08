@@ -22,3 +22,7 @@ Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Conten
 
 * Run npm install @uppy/react @uppy/core @uppy/dashboard @uppy/tus
 * Copy and paste the React/UploadFile.jsx code
+
+
+# Need Our Support?
+For Paid support you can reach out to us by sending an email on: info@wolfnetwork.in or directly call us or whatsapp us on: +91 9137166653
