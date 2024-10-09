@@ -21,12 +21,18 @@
             ]);
         }
 
-        public function generateUploadID($file_name,$file_type,$total_chunks,$total_file_size){
+        public function generateUploadID($file_data, $bucket = ''){
             $bucket = (!empty($bucket))?$bucket:$this->default_bucket;
 
+            $file_name = $file_data['file_name'];
+            $file_path = $file_data['file_path'];
+            $file_type = $file_data['file_type'];
+            $total_chunks = $file_data['total_chunks'];
+            $total_file_size = $file_data['total_file_size'];
+            
             $createResult = $this->s3_client->createMultipartUpload([
                 'Bucket' => $bucket,
-                'Key'    => 'chunk-upload-test/'.$file_name, // Unique file name in S3
+                'Key'    => $file_path, // Unique file name in S3
             ]);
 
             $s3_tracking_model = new \Models\S3_model();
