@@ -1,4 +1,4 @@
-# Chunk upload snippet for CI4 and React using uppy library 
+# S3 Bucket Chunk upload snippet for CI4 and React using uppy library 
 
 Upload large files in chunks
 
