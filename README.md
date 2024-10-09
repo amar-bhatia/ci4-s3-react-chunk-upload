@@ -16,7 +16,20 @@ Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Conten
   * S3_KEY = 'YOUR_KEY'
   * S3_SECRET = 'YOUR_S3_SECRET'
   * S3_BASE_URL = 'YOUR_S3_URL'
-  * S3_DEFAULT_BUCKET = 'DEFAULT_S3_BUCKET' 
+  * S3_DEFAULT_BUCKET = 'DEFAULT_S3_BUCKET'
+
+## Special Notes
+
+generateUploadID function has 2 param:
+ * 1st would be the file data which you'll see in the controller file
+ * 2nd param is file_access_type which is public-read by default for S3, following are the access types which you can change based on your requirements:
+   * private
+   * public-read (Default)
+   * public-read-write
+   * authenticated-read
+   * bucket-owner-read
+   * bucket-owner-full-control
+   * log-delivery-write
 
 # React setup guide
 
