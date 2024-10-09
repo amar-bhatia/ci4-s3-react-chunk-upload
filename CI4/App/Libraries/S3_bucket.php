@@ -21,10 +21,23 @@
             ]);
         }
 
-        public function generateUploadID($file_data, $bucket = ''){
+        public function generateUploadID($file_data, $bucket = '', $file_access_type = 'public-read'){
             $bucket = (!empty($bucket))?$bucket:$this->default_bucket;
 
+            /* ------------------------------ 
+            Following are the File Access Types
+
+            1) private
+            2) public-read (Default)
+            3) public-read-write
+            4) authenticated-read
+            5) bucket-owner-read
+            6) bucket-owner-full-control
+            7) log-delivery-write
+            ---------------------------------- */
+
             $file_name = $file_data['file_name'];
+            $file_extension = pathinfo($file_name,PATHINFO_EXTENSION);
             $file_path = $file_data['file_path'];
             $file_type = $file_data['file_type'];
             $total_chunks = $file_data['total_chunks'];
@@ -33,6 +46,8 @@
             $createResult = $this->s3_client->createMultipartUpload([
                 'Bucket' => $bucket,
                 'Key'    => $file_path, // Unique file name in S3
+                'ACL' => $file_access_type,
+                'ContentType' => $file_extension
             ]);
 
             $s3_tracking_model = new \Models\S3_model();
@@ -53,23 +68,12 @@
             return $createResult['UploadId'];
         }
 
-        public function chunkUpload($upload_tracking_id, $chunk_upload_files_data, $bucket = '', $folder = '', $file_custom_name = '', $file_access_type = 'public-read'){
-
-           /* ------------------------------ 
-            Following are the File Access Types
-
-            1) private
-            2) public-read (Default)
-            3) public-read-write
-            4) authenticated-read
-            5) bucket-owner-read
-            6) bucket-owner-full-control
-            7) log-delivery-write
-            ---------------------------------- */
+        public function chunkUpload($upload_tracking_id, $chunk_upload_files_data, $bucket = ''){
           
             $bucket = (!empty($bucket))?$bucket:$this->default_bucket;
 
             $file_name = $chunk_upload_files_data['file_name'];
+            $file_path = $chunk_upload_files_data['file_path'];
             $file_chunk = $chunk_upload_files_data['file_chunk'];
             $upload_id = $chunk_upload_files_data['upload_id'];
             $part_number = $chunk_upload_files_data['part_number'];
