@@ -67,7 +67,7 @@ class S3_controller extends ResourceController
 
         $upload_id = $this->s3_bucket->generateUploadID($file_name, $file_type, $total_chunks, $total_file_size);
 
-        $location = "upload-collaterals/".$upload_id;
+        $location = "upload-files/".$upload_id;
 
         // Set the Location header
 
@@ -97,7 +97,7 @@ class S3_controller extends ResourceController
 
         $chunk_file_data = $this->s3_bucket->chunkUpload($file_data['ChunkUploadTrackingID'], $chunk_upload_files_data);
 
-        $location = "upload-collaterals/".$upload_id;
+        $location = "upload-files/".$upload_id;
 
         return $this->respond([
             'message' => 'Chunk Uploaded', 
