@@ -20,7 +20,7 @@ Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Conten
 
 # React setup guide
 
-* Run npm install @uppy/react @uppy/core @uppy/dashboard @uppy/tus
+* Run npm install @uppy/react @uppy/core @uppy/dashboard @uppy/tus @uppy/drag-drop @uppy/progress-bar @uppy/file-input
 * Copy and paste the React/UploadFile.jsx code
 
 
