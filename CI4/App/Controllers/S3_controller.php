@@ -60,12 +60,15 @@ class S3_controller extends ResourceController
         }
 
         // Extracting file name and type from metadata
-        $file_name = $metadata['name'];
-        $file_type = $metadata['type'];
-        $total_chunks = $metadata['totalChunks'];
-        $total_file_size = $metadata['fileSize'];
+        $file_data = [
+            'file_name' => $metadata['name'],
+            'file_path' => 'chunk-upload-test/'.$file_name,
+            'file_type' => $metadata['type'],
+            'total_chunks' => $metadata['totalChunks'],
+            'total_file_size' => $metadata['fileSize']
+        ];
 
-        $upload_id = $this->s3_bucket->generateUploadID($file_name, $file_type, $total_chunks, $total_file_size);
+        $upload_id = $this->s3_bucket->generateUploadID($file_data);
 
         $location = "upload-file/".$upload_id;
 
