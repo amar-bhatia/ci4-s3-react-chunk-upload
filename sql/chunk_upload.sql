@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2024 at 02:04 PM
+-- Generation Time: Oct 11, 2024 at 07:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,12 +44,13 @@ CREATE TABLE `chunk_upload_files` (
 CREATE TABLE `chunk_upload_tracking` (
   `ChunkUploadTrackingID` int(11) NOT NULL,
   `UploadID` text NOT NULL,
+  `ProductID` int(11) NOT NULL,
   `FileName` text NOT NULL,
-  `FileType` varchar(50) NOT NULL,
+  `FilePath` text NOT NULL,
+  `FileType` text NOT NULL,
+  `MIMEType` varchar(50) NOT NULL,
   `TotalChunks` int(11) NOT NULL,
-  `TotalFileSize` int(11) NOT NULL,
-  `AddedByRegisteredUserID` int(11) NOT NULL,
-  `AddedByRegisteredUserDate` datetime NOT NULL
+  `TotalFileSize` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -67,8 +68,7 @@ ALTER TABLE `chunk_upload_files`
 -- Indexes for table `chunk_upload_tracking`
 --
 ALTER TABLE `chunk_upload_tracking`
-  ADD PRIMARY KEY (`ChunkUploadTrackingID`),
-  ADD KEY `AddedByRegisteredUserID` (`AddedByRegisteredUserID`);
+  ADD PRIMARY KEY (`ChunkUploadTrackingID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -95,13 +95,6 @@ ALTER TABLE `chunk_upload_tracking`
 --
 ALTER TABLE `chunk_upload_files`
   ADD CONSTRAINT `chunk_upload_files_ibfk_1` FOREIGN KEY (`ChunkUploadTrackingID`) REFERENCES `chunk_upload_tracking` (`ChunkUploadTrackingID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `chunk_upload_tracking`
---
-ALTER TABLE `chunk_upload_tracking`
-  ADD CONSTRAINT `chunk_upload_tracking_ibfk_1` FOREIGN KEY (`AddedByRegisteredUserID`) REFERENCES `sprint_core`.`registered_users` (`RegisteredUserID`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
