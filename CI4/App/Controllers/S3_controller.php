@@ -64,6 +64,7 @@ class S3_controller extends ResourceController
             'file_name' => $metadata['name'],
             'file_path' => 'chunk-upload-test/'.$file_name,
             'file_type' => $metadata['type'],
+            'mime_type' => $metadata['type'],
             'total_chunks' => $metadata['totalChunks'],
             'total_file_size' => $metadata['fileSize']
         ];
@@ -93,6 +94,7 @@ class S3_controller extends ResourceController
             'upload_id' => $upload_id,
             'file_chunk' => $chunk_data,
             'file_name' => $file_data['FileName'],
+            'file_path' => $file_data['FilePath'],
             'part_number' => $chunk_index,
             'total_chunks' => $file_data['TotalChunks'],
             'chunk_size' => $chunk_size
