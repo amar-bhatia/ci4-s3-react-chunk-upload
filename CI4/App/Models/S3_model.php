@@ -46,7 +46,7 @@ class S3_model extends Model
 
     public function fetchChunkUploadData($upload_id){
         $query = $this->db->table(CHUNK_UPLOAD_TRACKING)
-                                   ->select('ChunkUploadTrackingID,FileName,FileType,TotalChunks,TotalFileSize')
+                                   ->select('ChunkUploadTrackingID,FileName,FilePath,FileType,MIMEType,TotalChunks,TotalFileSize')
                                    ->groupBy('UploadID')
                                    ->getWhere(['UploadID' => $upload_id])
                                    ->getRowArray();
