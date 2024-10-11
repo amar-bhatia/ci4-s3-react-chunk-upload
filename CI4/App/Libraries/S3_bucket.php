@@ -90,7 +90,7 @@
                 // Upload the chunk (part) to S3
                 $upload_part_result  = $this->s3_client->uploadPart([
                     'Bucket'     => $bucket,
-                    'Key'        => 'chunk-upload-test/'.$file_name,
+                    'Key'        => $file_path,
                     'UploadId'   => $upload_id,
                     'PartNumber' => $part_number,
                     'Body'       => fopen($file_chunk, 'rb'),
@@ -125,7 +125,7 @@
                     // Step 3: After all parts are uploaded, complete the multipart upload
                     $completeResult = $this->s3_client->completeMultipartUpload([
                         'Bucket'   => $bucket,
-                        'Key'      => 'chunk-upload-test/'.$file_name,
+                        'Key'      => $file_path,
                         'UploadId' => $upload_id,
                         'MultipartUpload' => [
                             'Parts' => $partsArray, // ETag and part number for each part
