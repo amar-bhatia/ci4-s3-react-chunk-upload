@@ -37,9 +37,11 @@
             ---------------------------------- */
 
             $file_name = $file_data['file_name'];
+            $file_path = $file_data['file_path'];
             $file_extension = pathinfo($file_name,PATHINFO_EXTENSION);
             $file_path = $file_data['file_path'];
             $file_type = $file_data['file_type'];
+            $mime_type = $file_data['mime_type'];
             $total_chunks = $file_data['total_chunks'];
             $total_file_size = $file_data['total_file_size'];
             
@@ -57,7 +59,9 @@
             $chunk_upload_tracking_data = [
                 'UploadID' => $createResult['UploadId'],
                 'FileName' => $file_name,
+                'FilePath' => $file_path,
                 'FileType' => $file_type,
+                'MIMEType' => $mime_type,
                 'TotalChunks' => $total_chunks,
                 'TotalFileSize' => $total_file_size
             ];
