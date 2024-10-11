@@ -34,6 +34,7 @@ const UploadFileModal = () => {
         type: file.type,
         totalChunks: totalChunks,
         fileSize: file.size, // Add the file size to the metadata
+        fileType: fileType,
       });
     } else {
       console.error("File size is not available.");
